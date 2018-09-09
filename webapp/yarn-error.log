@@ -1,0 +1,60 @@
+Arguments: 
+  /usr/local/bin/node /Users/zainhatim/.yarn/bin/yarn.js install --modules-folder ./client/
+
+PATH: 
+  /Users/zainhatim/.yarn/bin:/Users/zainhatim/.config/yarn/global/node_modules/.bin:/usr/local/sbin:/Users/zainhatim/anaconda/bin://anaconda/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/zainhatim/Documents/Dev/flutter/bin
+
+Yarn version: 
+  1.6.0
+
+Node version: 
+  8.11.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: Hostname/IP doesn't match certificate's altnames: "Host: registry.npmjs.org. is not in the cert's altnames: DNS:a.sni.fastly.net, DNS:a.sni.global-ssl.fastly.net"
+      at Object.checkServerIdentity (tls.js:223:17)
+      at TLSSocket.<anonymous> (_tls_wrap.js:1111:29)
+      at emitNone (events.js:106:13)
+      at TLSSocket.emit (events.js:208:7)
+      at TLSSocket._finishInit (_tls_wrap.js:639:8)
+      at TLSWrap.ssl.onhandshakedone (_tls_wrap.js:469:38)
+
+npm manifest: 
+  {
+      "name": "graphy-photo-sharing",
+      "version": "1.0.0",
+      "description": "GraphQL photo sharing app",
+      "main": "server.js",
+      "scripts": {
+          "server": "nodemon server.js",
+          "client": "cd client && npm run serve",
+          "dev": "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\""
+      },
+      "keywords": [],
+      "author": "Zain Hatim",
+      "license": "ISC",
+      "dependencies": {
+          "apollo-server": "^2.0.0-rc.7",
+          "bcryptjs": "^2.4.3",
+          "dotenv": "^6.0.0",
+          "graphql": "^0.13.2",
+          "jsonwebtoken": "^8.3.0",
+          "md5": "^2.2.1",
+          "mongoose": "^5.2.6",
+          "vue-cli-plugin-vuetify": "^0.1.6",
+          "vuetify": "^1.2.1"
+      },
+      "devDependencies": {
+          "concurrently": "^3.6.0",
+          "nodemon": "^1.18.1"
+      }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

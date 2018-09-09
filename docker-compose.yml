@@ -1,0 +1,13 @@
+version: "3"
+services:
+  webapp:
+    build: .
+    ports:
+      - 8080:8080
+      - 4500:4500
+    volumes:
+      - ./webapp:/usr/webapp
+      - /usr/webapp/node_modules
+      - /usr/webapp/client/node_modules
+  db:
+    image: mongo
