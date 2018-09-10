@@ -36,12 +36,24 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 export default {
     name: 'SignIn',
     data() {
         return {
             username: '',
             password: ''
+        }
+    },
+    computed: {
+        ...mapGetters(['user'])
+    },
+    watch: {
+        user(value) {
+            if (value) {
+                this.$router.push('/');
+            }
         }
     },
     methods: {

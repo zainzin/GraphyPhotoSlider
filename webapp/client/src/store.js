@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import router from './router';
 import {defaultClient as apolloClient} from './main';
 import {GET_POSTS, SIGNIN_USER, GET_CURRENT_USER} from './queries';
 Vue.use(Vuex)
@@ -8,7 +9,7 @@ export default new Vuex.Store({
   state: {
     posts: [],
     loading: false,
-    token: ''
+    user: null
   },
   mutations: {
     setPosts(state, payload) {
@@ -17,8 +18,8 @@ export default new Vuex.Store({
     setLoading(state, payload) {
       state.loading = payload;
     },
-    setToken(state, payload) {
-      state.token = payload;    }
+    setUser(state, payload) {
+      state.user = payload;    }
   },
   actions: {
     getCurrentUser: ({commit}) => {
@@ -27,7 +28,7 @@ export default new Vuex.Store({
         query: GET_CURRENT_USER
       }).then(({data}) => {
         commit('setLoading', false);
-        console.log(data.getCurrentUser);
+        commit('setUser', data.getCurrentUser);
       }).catch(err => {
         commit('setLoading', false);
         console.error(err);
@@ -42,7 +43,7 @@ export default new Vuex.Store({
       if (posts.errors) throw posts.errors
       commit('setPosts', posts.data.getPosts);
     },
-    async signinUser({commit}, payload) {
+    async signinUser(_, payload) {
       const token = await apolloClient.mutate({
         mutation: SIGNIN_USER,
         variables: {
@@ -52,12 +53,12 @@ export default new Vuex.Store({
       });
       if (token.errors) throw token.errors
       localStorage.setItem('token', token.data.signinUser.token);
-      commit('setToken', token.data.signinUser.token);
+      router.go();
     }
   },
   getters: {
     posts: (state) => state.posts,
     loading: (state) => state.loading,
-    token: (state) => state.token
+    user: (state) => state.user
   }
 })
